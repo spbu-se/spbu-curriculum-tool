@@ -24,7 +24,21 @@ namespace CurriculumParser
                 foreach (var row in table.Elements<TableRow>().Skip(1))
                 {
                     var code = row.Elements<TableCell>().ElementAt(0).InnerText;
-                    var description = row.Elements<TableCell>().ElementAt(1).InnerText;
+                    var descriptionRuns = row.Elements<TableCell>().ElementAt(1).Descendants<Run>();
+                    var description = "";
+                    foreach (var run in descriptionRuns)
+                    {
+                        foreach (var element in run.ChildElements)
+                        {
+                            if (element is PageBreakBefore || element is LastRenderedPageBreak || element is Break)
+                            {
+                                description += " ";
+                                continue;
+                            }
+                            description += element.InnerText;
+                        }
+                    }
+                    description = description.Replace("  ", " ");
                     competences.Add(new Competence(code, description));
                 }
                 return competences;
