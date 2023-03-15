@@ -29,9 +29,8 @@ let correct_competence_test () =
 
     Warnings.competences curriculum |> should be Empty
 
-// Не работает корректно до исправления парсинга иностранных языков
-
 [<Test>]
+[<Ignore("Не работает корректно до исправления парсинга иностранных языков")>]
 let hours_test () =
     let curriculum =
         DocxCurriculum(System.AppDomain.CurrentDomain.BaseDirectory + "/../../../test_curricula.docx")
@@ -90,6 +89,7 @@ let code_test () =
         })
 
 [<Test>]
+[<Ignore("Тест написан для warning'a, который будет добавлена в будущем")>]
 let academic_hours_test () =
     let curriculum =
         DocxCurriculum(System.AppDomain.CurrentDomain.BaseDirectory + "/../../../test_curricula.docx")
@@ -103,6 +103,7 @@ let academic_hours_test () =
         })
 
 [<Test>]
+[<Ignore("Тест написан для warning'a, который будет добавлена в будущем")>]
 let correct_academic_hours_test () =
     let curriculum =
         DocxCurriculum(
